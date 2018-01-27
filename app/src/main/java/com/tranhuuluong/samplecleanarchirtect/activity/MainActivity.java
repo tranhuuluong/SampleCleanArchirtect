@@ -5,24 +5,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.tranhuuluong.samplecleanarchirtect.R;
-import com.tranhuuluong.samplecleanarchirtect.data.RetrofitClient;
-import com.tranhuuluong.samplecleanarchirtect.data.RetrofitServices;
-import com.tranhuuluong.samplecleanarchirtect.interactor.DataUseCase;
-import com.tranhuuluong.samplecleanarchirtect.interactor.impl.DataUseCaseImpl;
+import com.tranhuuluong.samplecleanarchirtect.application.MyApplication;
 import com.tranhuuluong.samplecleanarchirtect.model.Data;
 import com.tranhuuluong.samplecleanarchirtect.presenter.MainPresenter;
-import com.tranhuuluong.samplecleanarchirtect.presenter.impl.MainPresenterImpl;
 import com.tranhuuluong.samplecleanarchirtect.view.MainView;
 
+import javax.inject.Inject;
+
 public class MainActivity extends AppCompatActivity implements MainView {
+    @Inject
+    MainPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        RetrofitServices retrofitServices = RetrofitClient.getRetrofitClient().create(RetrofitServices.class);
-        DataUseCase dataUseCase = new DataUseCaseImpl(retrofitServices);
-        MainPresenter presenter = new MainPresenterImpl(dataUseCase);
+        ((MyApplication) this.getApplication()).getAppComponent()
+                .getMainActivityComponent()
+                .inject(this);
         presenter.attachView(this);
         presenter.getData();
     }
