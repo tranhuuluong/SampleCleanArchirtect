@@ -1,7 +1,9 @@
-package com.tranhuuluong.samplecleanarchirtect;
+package com.tranhuuluong.samplecleanarchirtect.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.tranhuuluong.samplecleanarchirtect.R;
 
 public class MainActivity extends AppCompatActivity {
 
