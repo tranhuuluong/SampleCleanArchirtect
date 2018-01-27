@@ -7,6 +7,8 @@ import android.util.Log;
 import com.tranhuuluong.samplecleanarchirtect.R;
 import com.tranhuuluong.samplecleanarchirtect.data.RetrofitClient;
 import com.tranhuuluong.samplecleanarchirtect.data.RetrofitServices;
+import com.tranhuuluong.samplecleanarchirtect.interactor.DataUseCase;
+import com.tranhuuluong.samplecleanarchirtect.interactor.impl.DataUseCaseImpl;
 import com.tranhuuluong.samplecleanarchirtect.model.Data;
 import com.tranhuuluong.samplecleanarchirtect.presenter.MainPresenter;
 import com.tranhuuluong.samplecleanarchirtect.presenter.impl.MainPresenterImpl;
@@ -19,7 +21,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RetrofitServices retrofitServices = RetrofitClient.getRetrofitClient().create(RetrofitServices.class);
-        MainPresenter presenter = new MainPresenterImpl(retrofitServices);
+        DataUseCase dataUseCase = new DataUseCaseImpl(retrofitServices);
+        MainPresenter presenter = new MainPresenterImpl(dataUseCase);
         presenter.attachView(this);
         presenter.getData();
     }

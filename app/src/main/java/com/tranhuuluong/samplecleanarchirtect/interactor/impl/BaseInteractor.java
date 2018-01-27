@@ -1,4 +1,4 @@
-package com.tranhuuluong.samplecleanarchirtect.impl;
+package com.tranhuuluong.samplecleanarchirtect.interactor.impl;
 
 import com.tranhuuluong.samplecleanarchirtect.executors.Executors;
 
